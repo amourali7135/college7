@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_133043) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_18_183249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,62 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_133043) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "applications", force: :cascade do |t|
+    t.string "essay_question_one"
+    t.text "first_essay"
+    t.string "essay_question_two"
+    t.text "second_essay"
+    t.string "essay_question_three"
+    t.text "third_essay"
+    t.integer "status"
+    t.bigint "program_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_applications_on_program_id"
+    t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "programs", force: :cascade do |t|
+    t.string "title"
+    t.string "headline"
+    t.text "description"
+    t.boolean "rolling", null: false
+    t.date "application_due_date"
+    t.string "location"
+    t.float "latitude"
+    t.float "longitude"
+    t.boolean "remote", null: false
+    t.integer "spots"
+    t.text "requirements"
+    t.string "length"
+    t.integer "minimum_age"
+    t.boolean "visa_sponsorship", null: false
+    t.date "start_date"
+    t.boolean "virtual_components", null: false
+    t.boolean "housing_provided", null: false
+    t.boolean "essay_one_needed", default: false, null: false
+    t.boolean "essay_two_needed", default: false, null: false
+    t.boolean "essay_three_needed", default: false, null: false
+    t.string "essay_question_one"
+    t.string "essay_question_two"
+    t.string "essay_question_three"
+    t.boolean "salary", null: false
+    t.integer "salary_paid"
+    t.integer "cost"
+    t.boolean "certificate_awarded", null: false
+    t.boolean "nationals_only", null: false
+    t.integer "status"
+    t.string "time_requirement"
+    t.boolean "job_guaranteed", null: false
+    t.string "program_format"
+    t.boolean "relocation_assistance", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_programs_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -81,6 +137,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_133043) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "organization_name"
+    t.string "location"
+    t.text "bio"
+    t.integer "age"
+    t.text "goal"
+    t.integer "user_type"
+    t.string "interests"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -103,5 +169,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_133043) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "applications", "programs"
+  add_foreign_key "applications", "users"
+  add_foreign_key "programs", "users"
   add_foreign_key "taggings", "tags"
 end
