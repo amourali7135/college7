@@ -131,5 +131,4 @@ group :test do
   gem 'shoulda-matchers'
   # Use fake data in app.
   gem "faker"
-  
 end
