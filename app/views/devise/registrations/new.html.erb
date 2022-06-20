@@ -1,25 +1,46 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-sm-8 card p-4 m-4 bg-light ">
+      <h2>Sign up</h2>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" }, 
+                    placeholder: "123@abc.com" %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :user_type, collection: User.user_types.keys, label: "Are you a prospective employer or a student?", input_html: {id: :user_type_pulldown} %>
+          <div id="organization_details" style="display:none;">
+            <%= f.input :organization_name, required: true, label: "What's the name of your organization?", placeholder: "Plumbing Incorporated" %>
+          </div>
+          <div id="geocoder" style="display:none" >
+            <%= f.input :location, required: true, wrapper_html: { id: :location_label, style: "display:none" }, input_html: { data: { geocoder_target: "location" }, class: "d-none" } %>
+          </div>
+          <pre id="result", class="d-none" ></pre>
+          <div id="student_details" style="display:none;">
+            <%= f.input :age, required: true %>
+            <%= f.input :bio, label: "Please tell us and potentially the heads of programs a little bit about yourself" %>
+            <%= f.input :goal, label: "What's your primary career related goal?" %>
+          </div>
+          <%= f.input :photo, as: :file, wrapper_html: { id: :photo_part,  style: "display:none;" } %>
+          <%= f.input :admin, as: :hidden, value: false %>
+          <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up" %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
