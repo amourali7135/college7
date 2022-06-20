@@ -1,0 +1,4 @@
+var unfavoriteButton = document.getElementById("favorite_buttons");
+
+unfavoriteButton.innerHTML = (' <%= link_to 'Save this program for later', like_program_path(@program), remote: true, method: :put, class: 'btn btn-primary', id: "like_button" %>');
+

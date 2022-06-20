@@ -1,0 +1,11 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <% @programs.each do |program| %>
+          <%= render partial: 'programs/program_card_index', locals: {program: program} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

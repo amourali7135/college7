@@ -1,0 +1,10 @@
+<div class="card-program">
+  <%= cl_image_tag program.user.photo.key, height: 300, width: 400, crop: :fill, :alt=>"Business Logo" %>
+  <div class="card-program-infos">
+    <h2><%= program.title %></h2>
+    <p><%= program.headline %></p>
+    <p><%= program.description %></p>
+    <p><%= program.location %></p>
+    <p><%= link_to 'Show', program, remote: true %></p>
+  </div>
+</div>

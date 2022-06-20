@@ -1,0 +1,13 @@
+function searchPrograms(program) {
+const programs = document.getElementById('programs');
+programs.insertAdjacentHTML("beforeend", program);
+} 
+
+document.getElementById('programs').innerHTML = "";
+
+<% @programs.each do |program| %>
+searchPrograms("<%= escape_javascript(render partial: 'programs/program_card_index', locals: { program: program } ) %>"); 
+<% end %>
+
+document.getElementById("programs_length").innerHTML = ('<p><%= @programs.length %> matching programs available of <%= @programs_size.length %> programs</p>');
+

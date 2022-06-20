@@ -1,0 +1,46 @@
+<div class="section">
+  <div class="container p-2">
+    <div class="row">
+      <div class="col">
+        <%= cl_image_tag program.user.photo.key, height: 150, width: 200, crop: :fill, :alt=>"Business Logo" %>
+        <h2> <%= @program.title %> </h2>
+        <p> <%= @program.headline %> </p>
+        <p>Type of program: <%= @program.program_format %> </p>
+        <p>Description of the program: <%= @program.description %> </p>
+        <p>Location: <%= @program.location %> </p>
+        <p>Number of spots available: <%= @program.spots %> </p>
+        <p>Requirements for applicants: <%= @program.requirements %> </p>
+        <p>Length of program: <%= @program.length %> </p>
+        <p>Minimum age required for applicants: <%= @program.minimum_age %> </p>
+        <p>Program cost: <%= @program.cost %> </p>
+        <p>Program time commitment: <%= @program.time_requirement %> </p>
+        <p>Tag check: <%= @program.occupation_tagging_list.each do |tag| %></p>
+          <%= link_to tag, programs_path(tag: tag) %>
+        <% end %>
+        <% if current_user %>
+          <div class="container">
+            <div class="row py-2">
+              <div class="col">
+                <div class="favorites", id="favorite_buttons">
+                  <% if !current_user.find_liked_items.include?(@program) %>
+                    <div id="favorite_button">
+                      <%= link_to 'Save this program for later', like_program_path(@program), remote: true, method: :put, class: 'btn btn-primary', id: "like_button" %>
+                    </div>
+                  <% end %>
+                  <% if current_user.find_liked_items.include?(@program) %>
+                    <div id="unfavorite_button">
+                      <%= link_to 'Unsave this program', unlike_program_path(@program), remote: true, method: :put, class: 'btn btn-primary', id: "unlike_button" %>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="col">
+                  <%= link_to 'Apply to this program', new_program_application_path(@program, @application), class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

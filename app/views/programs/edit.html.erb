@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-sm-8 card p-4 m-4 bg-light ">
+      <h2>Create your program so that potential students can apply</h2>
+      <p>Please provide the following details about your program</p>
+      <%= simple_form_for @program do |f|%>
+        <%#= f.input :career_category, label: "Please pick the career category that best applies to this program", collection: Program.career_category %>
+        <%= f.input :occupation_tagging_list, collection: Program.career_category, label: "Please pick the career category that best applies to this program" %>
+        <%= f.input :program_format, label: "Please pick the format that best applies to this program", collection: Program.program_format %>
+        <%= f.input :title, label:  "What would you like to name your program?", placeholder: "4-week long carpeting crash course" %>
+        <%= f.input :headline, label: "Provide a one sentence summary about your program to garner interest", placeholder: "Learn carpeting basics 101" %>
+        <%= f.input :description, label: "Provide an in-depth description about what your program has to offer potential students", placeholder: "We're offering a four-week long crash course for students to learn about the basics of carpeting.  It's a full-time class of four located in the heart of New York City.  No experience is necessary, must be at least 18, etc." %>
+        <%= f.input :requirements, label: "What are the requirements that applicants need to have in order to apply successfully?", placeholder: 'There are no pre-requisites other than having enthusiasm to learn!' %>
+        <div id="geocoder" >
+          <%= f.input :location, label: "Where is this program located?", placeholder: "1 Rodeo Drive Beverly Hills California", input_html: { data: { geocoder_target: "location" }, class: "d-none" }, wrapper_html: { id: :location_label } %>
+        </div>
+        <pre id="result", class="d-none" ></pre>
+        <%= f.input :rolling, label: "Are potential students allowed to apply at anytime?  Or is there a specific due date?" %>
+        <div id="rolling_prompt" style="display:none">
+          <%= f.input :application_due_date, label: "On what day are applications due by at the latest?", required: true %>
+          <%= f.input :start_date, label: "On what date does this program begin?", required: true %>
+        </div>
+        <%= f.input :time_requirement, label: "What's the weekly time commitment for the program?", collection: Program.time_requirement %>
+        <%= f.input :spots, label: "How many spots are there available for your program?", placeholder: "10" %>
+        <%= f.input :length, collection: Program.length, label: "How long does the program last for?" %>
+        <%= f.input :minimum_age, label: "What's the minimum age requirement for applicants?", placeholder: "16" %>
+        <%= f.input :essay_one_needed, label: "Do you want applicants to submit an essay to be considered for admission?" %>
+        <div id="first_essay_prompt" style="display:none">
+          <%= f.input :essay_question_one, label: "What would you like the first essay to be about?", placeholder: "Why are you interested in our program?" %>
+          <%= f.input :essay_two_needed, label: "Do you want applicants to submit a second essay as well?" %>
+        </div>
+        <div id="second_essay_prompt" style="display:none">
+          <%= f.input :essay_question_two, label: "What would you like the second essay to be about?", placeholder: "What are your goals with regards to this program?" %>
+          <%= f.input :essay_three_needed, label: "Do you want applicants to submit a third essay too?" %>
+        </div>
+        <div id="third_essay_prompt" style="display:none">
+          <%= f.input :essay_question_three, label: "What would you like the third essay to be about?", placeholder: "Tell me about how you overcame a hardship that you've faced in the past?" %>
+        </div>
+        <%= f.input :salary, label: "Do you offer a salary or stipend for living expenses to program participants?" %>
+        <div id="salary_prompt" style="display:none">
+          <%= f.input :salary_paid, label: "What is the salary/stipend you have to offer?", placeholder: "$1000 per month" %>
+        </div>
+        <%= f.input :cost, label: "How much will it cost successful applicants to participate in and complete the program?", placeholder: "$2500" %>
+        <%= f.input :nationals_only, label: "Are national citizens only eligible to apply?" %>
+        <div id="visa_prompt" style="display:block">
+          <%= f.input :visa_sponsorship, label: "Do you offer visa sponsorship for foreign nationals?" %>
+        </div>
+        <%= f.input :remote, label: "Is the program completely remote?" %>
+        <%= f.input :virtual_components, label: "Are there any virtual or remote components for this program?" %>
+        <%= f.input :housing_provided, label: "Would program participants have housing provided for them from you?" %>
+        <%= f.input :relocation_assistance, label: "Will you provide participants with any help to relocate to the destination of your program?" %>
+        <%= f.input :certificate_awarded, label: "Do participants earn any certification or degree upon completion?" %>
+        <%= f.input :status, value: :Active, as: :hidden %>
+        <%= f.input :job_guaranteed, label: "Are participants guaranteed to get a job with your organization upon successfully completing the program?" %>
+        <div style="text-align:center">
+          <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

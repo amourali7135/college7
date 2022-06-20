@@ -1,0 +1,3 @@
+var favoriteButton = document.getElementById("favorite_buttons");
+
+favoriteButton.innerHTML = (' <%= link_to 'Unsave this program',  unlike_program_path(@program), remote: true, method: :put, class: 'btn btn-primary', id: "unlike_button" %>');

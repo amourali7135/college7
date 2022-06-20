@@ -1,0 +1,8 @@
+var currentProgram = document.querySelector("#current_program");
+var indexSavedProgram = document.querySelector("#index_saved_programs");
+
+if (currentProgram) {
+document.querySelector("#current_program").innerHTML = ("<%= escape_javascript(render partial: 'programs/show', locals: { program: @program } ) %>");
+} else {
+document.querySelector("#index_saved_programs").innerHTML = ("<%= escape_javascript(render partial: 'programs/show', locals: { program: @program } ) %>");
+}
