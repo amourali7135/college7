@@ -8,6 +8,7 @@
     "@popperjs/core": "^2.11.5",
     "bootstrap": "^5.1.3",
     "mapbox-gl": "^2.9.0",
+    "mrujs": "^0.10.1",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0"
   },

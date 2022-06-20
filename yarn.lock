@@ -1110,6 +1110,18 @@ minimist@^1.2.6:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
+"morphdom@>=2.6.0 <3.0.0":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.6.1.tgz#e868e24f989fa3183004b159aed643e628b4306e"
+  integrity sha512-Y8YRbAEP3eKykroIBWrjcfMw7mmwJfjhqdpSvoqinu8Y702nAwikpXcNFDiIkyvfCLxLM9Wu95RZqo4a9jFBaA==
+
+mrujs@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/mrujs/-/mrujs-0.10.1.tgz#63f64a37fc6dd9ce14a7296a09a5efaac54a322f"
+  integrity sha512-VRilxqfFi0PAEsaNHUQvtf3QKpU7p9xXA97HyksIc4Jb13Bap/9d212dUddC31TnEGby7GymWU+EKRiZIcOJmQ==
+  dependencies:
+    morphdom ">=2.6.0 <3.0.0"
+
 murmurhash-js@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/murmurhash-js/-/murmurhash-js-1.0.0.tgz#b06278e21fc6c37fa5313732b0412bcb6ae15f51"
