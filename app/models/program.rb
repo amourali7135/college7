@@ -42,7 +42,7 @@ class Program < ApplicationRecord
     validate :future_date_start?, if: :rolling?
     validates :occupation_tagging_list, presence: true
   
-    enum status: { Active: 0, Temporarily_paused: 1, Permanently_closed: 2 }, _default: "Active"
+    enum status: { active: 0, temporarily_paused: 1, permanently_closed: 2 }, _default: "active"
   
     geocoded_by :location
     after_validation :geocode, if: :will_save_change_to_location?
@@ -73,7 +73,7 @@ class Program < ApplicationRecord
     end
   
     def active
-      @programs = Program.where(status: "Active")
+      @programs = Program.where(status: "active")
     end
   
     def salary?

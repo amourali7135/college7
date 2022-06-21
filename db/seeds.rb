@@ -14,7 +14,7 @@ user =
     first_name: 'Amir',
     last_name: 'Mourali',
     location: 'Singapore',
-    user_type: 'Employer',
+    user_type: 'employer',
     organization_name: 'Fake organization name',
   )
 user.photo.attach(
@@ -31,7 +31,7 @@ user =
     first_name: 'Amir',
     last_name: 'Mourali',
     location: 'Singapore',
-    user_type: 'Student',
+    user_type: 'student',
     age: 23,
     bio: Faker::Lorem.sentences(number: 3),
     goal: Faker::Lorem.sentences(number: 1),

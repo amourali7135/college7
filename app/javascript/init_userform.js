@@ -13,7 +13,7 @@ const initUserform = () => {
     // mapBoxResults.value = searchInput.value;
     if (userRoleInput) {
       window.addEventListener("pageshow", function () {
-        if (userRoleInput.value == "Employer") {
+        if (userRoleInput.value == "employer") {
           organizationSection.style.display = "block";
           studentSection.style.display = "none";
           photoPart.firstChild.innerText =
@@ -23,7 +23,7 @@ const initUserform = () => {
           locationSection.style.display = "block";
           locationSection.firstChild.textContent =
             "Where is your organization located?  *";
-        } else if (userRoleInput.value == "Student") {
+        } else if (userRoleInput.value == "student") {
           studentSection.style.display = "block";
           organizationSection.style.display = "none";
           photoPart.firstChild.innerText = "Photo of you  *";
@@ -43,7 +43,7 @@ const initUserform = () => {
   
     if (userRoleInput) {
       userRoleInput.addEventListener("change", function () {
-        if (userRoleInput.value == "Employer") {
+        if (userRoleInput.value == "employer") {
           organizationSection.style.display = "block";
           studentSection.style.display = "none";
           photoPart.firstChild.innerText =
@@ -53,7 +53,7 @@ const initUserform = () => {
           locationSection.style.display = "block";
           locationSection.firstChild.textContent =
             "Where is your organization located?  *";
-        } else if (userRoleInput.value == "Student") {
+        } else if (userRoleInput.value == "student") {
           studentSection.style.display = "block";
           organizationSection.style.display = "none";
           photoPart.firstChild.innerText = "Photo of you  *";

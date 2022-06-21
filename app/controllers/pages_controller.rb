@@ -15,7 +15,7 @@ class PagesController < ApplicationController
 
   def business_dashboard
     @programs = Program.where(user_id: current_user.id).includes([:user])
-    if !current_user.Employer?
+    if !current_user.employer?
       flash[:notice] = "Only employers can access a business dashboard"
       redirect_to root_path
     end
@@ -25,7 +25,7 @@ class PagesController < ApplicationController
   @applications = Application.where(user_id: current_user.id)#.includes([:user])#.includes([:program])
   # @pagy, @programs = pagy(current_user.find_liked_items, items: 20)
   @programs = current_user.find_liked_items
-    if !current_user || current_user.Employer?
+    if !current_user || current_user.employer?
       flash[:notice] = "Only student users can access a user dashboard"
       redirect_to root_path
     end

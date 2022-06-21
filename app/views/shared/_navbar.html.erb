@@ -24,10 +24,10 @@
           <li class="nav-item dropdown">
             <%= image_tag "https://previews.123rf.com/images/apoev/apoev1806/apoev180600175/103284768-default-placeholder-businessman-half-length-portrait-photo-avatar-man-gray-color.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <% if current_user.Employer? %>
+              <% if current_user.employer? %>
                 <%= link_to "Business Dashboard", business_dashboard_path, class: "dropdown-item" %>
               <% end %>
-              <% if current_user.Student? %>
+              <% if current_user.student? %>
                 <%= link_to "User Dashboard", user_dashboard_path, class: "dropdown-item" %>
               <% end %>
               <%#= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
