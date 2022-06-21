@@ -30,7 +30,8 @@
               <% if current_user.Student? %>
                 <%= link_to "User Dashboard", user_dashboard_path, class: "dropdown-item" %>
               <% end %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%#= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
