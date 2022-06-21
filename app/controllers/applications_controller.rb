@@ -2,7 +2,7 @@ class ApplicationsController < ApplicationController
     before_action :set_program, only: %i[show edit update destroy new create]
   # before action :set_application, only: %i[show edit update destroy]
   # before action :set_application, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+        skip_before_action :authenticate_user!, only: [:index, :show]
 
 
   def new

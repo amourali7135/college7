@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :location, presence: true
   validates :organization_name, presence: true, if: :Employer?
+  validates :organization_name, uniqueness: true, if: :Employer?
   #Is age necessary though?  Fuark.  
   validates :age, presence: true, numericality: { only_integer: true }, if: :Student?
   validates :user_type, presence: true

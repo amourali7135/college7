@@ -8,19 +8,19 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Find programs", programs_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Explore careers", career_options_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", root_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Find programs", programs_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Explore careers", career_options_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "About", about_path, class: "nav-link" %>
-          </li>
           <li class="nav-item dropdown">
             <%= image_tag "https://previews.123rf.com/images/apoev/apoev1806/apoev180600175/103284768-default-placeholder-businessman-half-length-portrait-photo-avatar-man-gray-color.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
