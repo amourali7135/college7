@@ -19,8 +19,8 @@ class ApplicationsController < ApplicationController
     @application.user_id = current_user.id
     @application.program = @program
     if @application.save
-      flash[:notice] = "You've successfully submitted your application!"
-      redirect_to @program
+      flash[:notice] = "You've successfully submitted your application, good luck!"
+      redirect_to user_dashboard_path
     else
       flash[:notice] = "There was an error, please try again!"
       render 'new'

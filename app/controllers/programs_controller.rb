@@ -20,8 +20,8 @@ class ProgramsController < ApplicationController
       format.html
       format.js #{ render layout: false }
     end
-    # raise
     @programs_size = Program.where(status: :active)
+    # raise
   end
 
   def new
@@ -45,6 +45,7 @@ class ProgramsController < ApplicationController
       format.html { render 'programs/show' }
       format.js { render layout: false } # Add this line to you respond_to block
     end
+    # raise
   end
 
   def update
