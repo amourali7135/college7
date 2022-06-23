@@ -1,10 +1,34 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      -Pundit to restrict access.
+    <div class="col card m-2">
+      <% if current_user.student? %>
+        <h3>Your application to <%= @application.program.title %></h3>
+        <h4><%= @application.program.user.organization_name %></h4>
+        <%= cl_image_tag @application.program.user.photo.key, height: 150, width: 200, crop: :fill, :alt=>"Business Logo" %>
+        <p><strong>Current application status: </strong><%= @application.status.capitalize %></p>
+        <p>Submitted on: <%= @application.created_at.strftime("%m/%d/%y at %l:%M %p") %></p>
+        <p>Updated on: <%= @application.updated_at.strftime("%m/%d/%y at %l:%M %p") %></p>
+         <p> <%= @application.program.headline %> </p>
+        <p>Type of program: <%= @application.program.program_format %> </p>
+        <p>Description of the program: <%= @application.program.description %> </p>
+        <p>Location: <%= @application.program.location %> </p>
+        <p>Number of spots available: <%= @application.program.spots %> </p>
+        <p>Requirements for applicants: <%= @application.program.requirements %> </p>
+        <p>Length of program: <%= @application.program.length %> </p>
+        <p>Minimum age required for applicants: <%= @application.program.minimum_age %> </p>
+        <p>Program cost: <%= @application.program.cost %> </p>
+        <p>Program time commitment: <%= @application.program.time_requirement %> </p>
+        <p>Tag check: <%= @application.program.occupation_tagging_list.each do |tag| %></p>
+          <%= link_to tag, programs_path(tag: tag) %>
+        <% end %>
+      <% else %>
+        <h3>Applicant information</h3>
+        <p><%= @application.user.first_name %> <%= @application.user.last_name %></p>
+      <% end %>
       -Private information of applicant.
       -Questions from proper controller actions.
       -User dashboard AJAX access like program index show combo.
+      -Show info for business if student, and info for student if business.
     </div>
   </div>
 </div>

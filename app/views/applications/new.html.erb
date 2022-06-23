@@ -5,7 +5,7 @@
       <%= simple_form_for [@program, @application], url: program_applications_path, method: :post do |f|%>
         <p>Upon applying, the program manager will receive the following personal information about you before subsequently deciding upon how to respond to your application as soon as they can</p>
         <div id="application_personal_details">
-          <p>Name: <%= current_user.first_name + current_user.last_name %></p>
+          <p>Name: <%= current_user.first_name %> <%= current_user.last_name %> </p>
           <p>Location: <%= current_user.location %></p>
           <p>Bio: <%= current_user.bio %></p>
           <p>Age: <%= current_user.age %></p>

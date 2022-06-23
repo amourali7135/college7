@@ -25,6 +25,7 @@ class PagesController < ApplicationController
   @applications = Application.where(user_id: current_user.id)#.includes([:user])#.includes([:program])
   # @pagy, @programs = pagy(current_user.find_liked_items, items: 20)
   # Need to filter/scope out applied to from the saved!  Not key though, figure it out for later.  
+  # @programs = current_user.applications.where(program_id: current_user.find_liked_items)
   @programs = current_user.find_liked_items#.where(application.program_id: program.id)
     if !current_user || current_user.employer?
       flash[:notice] = "Only student users can access a user dashboard"

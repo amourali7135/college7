@@ -52,7 +52,9 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
     @application.destroy
     flash[:notice] = 'Your application was successfully deleted!'
-    redirect_to @application.program
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   private
