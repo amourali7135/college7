@@ -8,7 +8,7 @@
         <p><strong>Current application status: </strong><%= @application.status.capitalize %></p>
         <p>Submitted on: <%= @application.created_at.strftime("%m/%d/%y at %l:%M %p") %></p>
         <p>Updated on: <%= @application.updated_at.strftime("%m/%d/%y at %l:%M %p") %></p>
-         <p> <%= @application.program.headline %> </p>
+        <p> <%= @application.program.headline %> </p>
         <p>Type of program: <%= @application.program.program_format %> </p>
         <p>Description of the program: <%= @application.program.description %> </p>
         <p>Location: <%= @application.program.location %> </p>
@@ -22,8 +22,42 @@
           <%= link_to tag, programs_path(tag: tag) %>
         <% end %>
       <% else %>
-        <h3>Applicant information</h3>
+        <h3>Applicant information for your <%= @application.program.title %> program</h3>
+        <div class="d-flex justify-content-between w-100">
+          <%= simple_form_for [@program, @application], url: program_applications_path, method: :post do |f|%>
+            <p>What do you think of this application?  Change the application status here:  </p>
+            <%= f.input :status, collection: Application.statuses.keys %>
+            <% if @program.essay_one_needed? %>
+              <div id="application_essay_one">
+                <%= f.input :first_essay, as: :hidden %>
+              </div>
+            <% end %>
+            <% if @program.essay_two_needed? %>
+              <div id="application_essay_two" >
+                <%= f.input :second_essay, as: :hidden %>
+              </div>
+            <% end %>
+            <% if @program.essay_three_needed? %>
+              <div id="application_essay_three" >
+                <%= f.input :third_essay, as: :hidden %>
+              </div>
+            <% end %>
+            <div style="text-align:center">
+              <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>
+            </div>
+          <% end %>
+        </div>
+        <p><%= cl_image_tag @application.user.photo.key, height: 150, width: 200, crop: :fill, :alt=>"Applicant user photo" %></p>
         <p><%= @application.user.first_name %> <%= @application.user.last_name %></p>
+        <p><%= @application.user.location %></p>
+        <p><%= @application.user.bio %></p>
+        <p><%= @application.user.age %></p>
+        <p><%= @application.essay_question_one %></p>
+        <p><%= @application.first_essay %></p>
+        <p><%= @application.essay_question_two %></p>
+        <p><%= @application.second_essay %></p>
+        <p><%= @application.essay_question_three %></p>
+        <p><%= @application.third_essay %></p>
       <% end %>
       -Private information of applicant.
       -Questions from proper controller actions.

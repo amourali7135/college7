@@ -25,7 +25,7 @@ class ApplicationsController < ApplicationController
       flash[:notice] = "There was an error, please try again!"
       render 'new'
       # render new_program_application_path(@program, @application)
-      raise
+      # raise
     end
   end
 
@@ -35,9 +35,13 @@ class ApplicationsController < ApplicationController
 
   def update
     @application = Application.find(params[:id])
-    if @application.update(application_params)
+    # Different redirects for employer and student redirects!
+    if @application.update(application_params) & current_user.student?
       flash[:notice] = "You've successfully updated your application"
       redirect_to user_dashboard_path
+    elsif @application.update(application_params) & current_user.employer?
+      flash[:notice] = "You've successfully updated this application"
+      redirect_to @application
     else
       flash[:error] = 'There was an error, please try again!'
       render 'edit'
@@ -46,6 +50,7 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    # raise
   end
 
   def destroy
