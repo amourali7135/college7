@@ -5,6 +5,7 @@
       <p>Please provide the following details about your program</p>
       <%= simple_form_for @program do |f|%>
         <%#= f.input :career_category, label: "Please pick the career category that best applies to this program", collection: Program.career_category %>
+        <%= f.input :status, label: "Would you like to update the status of your program?", collection: Program.statuses.keys %>
         <%= f.input :occupation_tagging_list, collection: Program.career_category, label: "Please pick the career category that best applies to this program" %>
         <%= f.input :program_format, label: "Please pick the format that best applies to this program", collection: Program.program_format %>
         <%= f.input :title, label:  "What would you like to name your program?", placeholder: "4-week long carpeting crash course" %>
@@ -50,7 +51,6 @@
         <%= f.input :housing_provided, label: "Would program participants have housing provided for them from you?" %>
         <%= f.input :relocation_assistance, label: "Will you provide participants with any help to relocate to the destination of your program?" %>
         <%= f.input :certificate_awarded, label: "Do participants earn any certification or degree upon completion?" %>
-        <%= f.input :status, value: :active, as: :hidden %>
         <%= f.input :job_guaranteed, label: "Are participants guaranteed to get a job with your organization upon successfully completing the program?" %>
         <div style="text-align:center">
           <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>

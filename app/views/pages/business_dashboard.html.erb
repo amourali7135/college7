@@ -1,10 +1,68 @@
-<div class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <% @programs.each do |program| %>
-          <%= render partial: 'programs/program_card_business_dashboard', locals: {program: program} %>
-        <% end %>
+<div class="d-flex align-items-start">
+  <div class="nav flex-column nav-pills me-3 bg-dark col-lg-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</button>
+    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Programs</button>
+    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Applicants</button>
+    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Edit info</button>
+  </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      ...
+    </div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <table class="table table-striped table-bordered table-hover caption-top">
+              <caption>The programs that you've created and their current status</caption>
+              <thead>
+                <tr>
+                  <th>Program</th>
+                  <th>Headline</th>
+                  <th>Due date</th>
+                  <th>Status</th>
+                  <th>Created on</th>
+                  <th>Applications</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @programs.each do |program| %>
+                  <tr>
+                    <td><%= program.title %></td>
+                    <td><%= program.headline %></td>
+                    <td> <%= program.application_due_date %> </td>
+                    <td><%= program.status %></td>
+                    <td><%= program.created_at.strftime("%m/%d/%y at %l:%M %p") %></td>
+                    <td><%= link_to "See applications", program_applications_path(program.id), data: { turbo: :true }, method: :get %></td>
+                    <td><%= link_to "See", program_path(program.id), data: { turbo: :true }, method: :get, class: 'badge bg-primary' %>
+                      <%= link_to "Edit", edit_program_path(program.id), data: {turbo: :true }, method: :get, class: "badge bg-success" %>
+                      <%= link_to "Delete", program_path(program.id), data: { turbo: :true, confirm: "Are you sure?" }, method: :delete, class: 'badge bg-danger', remote: true %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+     
+    </div>
+    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+      <div class=container">
+        <div class="row">
+          <div class="col">
+            <h3>Would you like to edit your user profile?  Click here: </h3>
+            <%= link_to "Edit your user profile", edit_user_registration_path %>
+            <h4>This is your current information</h4>
+            <p>Name: <%= current_user.first_name %> <%= current_user.last_name %></p>
+            <p>Organization: <%= current_user.organization_name %> </p>
+            <p>Email: <%= current_user.email %> </p>
+            <p>Location: <%= current_user.location %></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

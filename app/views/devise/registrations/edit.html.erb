@@ -23,8 +23,8 @@
             <%= f.input :age, required: true %>
             <%= f.input :bio, label: "Please tell us and potentially the heads of programs a little bit about yourself" %>
             <%= f.input :goal, label: "What's your primary career related goal?" %>
+            <%= f.input :interests, label: "What career fields are you interested in?", collection: Program.career_category %>
           </div>
-          <%= f.input :interests, label: "What career fields are you interested in?", collection: Program.career_category %>
           <%= f.input :photo, as: :file, wrapper_html: { id: :photo_part,  style: "display:none;" } %>
           <%= f.input :admin, as: :hidden, value: false %>
           <%= f.input :password,

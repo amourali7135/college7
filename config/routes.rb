@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       put 'like', to: 'programs#like', as: 'like'
       put 'unlike', to: 'programs#unlike', as: 'unlike'
     end
-    resources :applications, except: :index
+    resources :applications
   end
 
   get '/search' => 'search#index'

@@ -51,7 +51,7 @@ class ProgramsController < ApplicationController
   def update
     if @program.update(program_params)
       flash[:notice] = "You've successfully updated your program!"
-      redirect_to @program # or dashboard?
+      redirect_to business_dashboard_path
     else
       flash[:error] = 'There was an error, please try again!'
       render 'edit'

@@ -119,6 +119,9 @@ group :development do
   # Fasterer was installed via CLI.  Just type fasterer into the Terminal and it'll launch.  
   # Find N +1 queries more efficiently
   gem 'bullet'
+  # Formatter to save time, if it works.
+  gem 'htmlbeautifier'
+
 
 end
 

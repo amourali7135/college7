@@ -19,40 +19,40 @@
         <% end %>
         <% if current_user %>
           <div class="container">
-            <div class="row py-2 justify-content-between">
+            <div class="row py-2 justify-content-around">
               <div class="col">
                 <div class="favorites", id="favorite_buttons">
                   <% if !current_user.find_liked_items.include?(@program) %>
                     <div id="favorite_button">
                       <%= link_to 'Save this program for later', like_program_path(@program), remote: true, method: :put, class: 'btn btn-primary', id: "like_button" %>
                     </div>
-                    <%# end %>
-                    <%# if current_user.find_liked_items.include?(@program) %>
                   <% else %>
                     <div id="unfavorite_button">
                       <%= link_to 'Unsave this program', unlike_program_path(@program), remote: true, method: :put, class: 'btn btn-primary', id: "unlike_button" %>
                     </div>
                   <% end %>
                 </div>
-                <% if !current_user.applications.where(program_id: @program.id).exists? %>
-                  <div class="col py-2">
-                    <%= link_to 'Apply to this program', new_program_application_path(@program, @application), class: 'btn btn-primary' %>
-                  </div>
-                <% else %>
-                  <div class="col">
-                    <p>You've already applied to this program!</p>
-                  </div>
-                <% end %>
+              </div>
+              <% if !current_user.applications.where(program_id: @program.id).exists? %>
+                <div class="col">
+                  <%= link_to 'Apply to this program', new_program_application_path(@program, @application), class: 'btn btn-primary' %>
+                </div>
               <% else %>
                 <div class="col">
-                  <h3>Interested?  Please click below to make an account so that you can apply to this program!</h3>
-                  <p><%= link_to "Register here!", new_user_registration_path, class: "btn btn-primary" %></p>
+                  <p>You've already applied to this program!</p>
                 </div>
-              <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col">
+              <h3>Interested?  Please click below to make an account so that you can apply to this program!</h3>
+              <p><%= link_to "Register here!", new_user_registration_path, class: "btn btn-primary" %></p>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 </div>

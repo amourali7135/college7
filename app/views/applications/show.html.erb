@@ -24,7 +24,8 @@
       <% else %>
         <h3>Applicant information for your <%= @application.program.title %> program</h3>
         <div class="d-flex justify-content-between w-100">
-          <%= simple_form_for [@program, @application], url: program_applications_path, method: :post do |f|%>
+          <%= simple_form_for [@program, @application], url: program_application_path(@program, @application), method: :patch, remote: true do |f|%>
+          <%#= simple_form_for [@program, @application], url: edit_program_application_path, method: :post do |f|%>
             <p>What do you think of this application?  Change the application status here:  </p>
             <%= f.input :status, collection: Application.statuses.keys %>
             <% if @program.essay_one_needed? %>

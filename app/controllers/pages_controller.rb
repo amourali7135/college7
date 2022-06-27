@@ -14,11 +14,15 @@ class PagesController < ApplicationController
   end
 
   def business_dashboard
-    @programs = Program.where(user_id: current_user.id).includes([:user])
     if !current_user.employer?
       flash[:notice] = "Only employers can access a business dashboard"
       redirect_to root_path
     end
+    @programs = Program.where(user_id: current_user.id)
+    @applications = Application.where(program_id: params[:program_id])
+    # @applications = Application.where(application.program.user_id = current_user.id)
+    # @program = Program.where(program_id: params[:program_id])
+    # @program = Program.find_by_id(params[:id])
   end
   
   def user_dashboard
