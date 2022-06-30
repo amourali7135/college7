@@ -56,7 +56,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @application = Application.find(params[:id]).includes([:program])
+    @application = Application.find(params[:id])#.includes([:program])
     # raise
   end
 

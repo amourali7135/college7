@@ -20,13 +20,18 @@ class PagesController < ApplicationController
     end
     @programs = Program.where(user_id: current_user.id)
     @applications = Application.where(program_id: params[:program_id])
+    # application = Application.where...
     # @applications = Application.where(application.program.user_id = current_user.id)
     # @program = Program.where(program_id: params[:program_id])
     # @program = Program.find_by_id(params[:id])
+     @testingarray = [] 
+     @programs.each do |program| 
+     @testingarray << program.applications.size 
+     end 
   end
   
   def user_dashboard
-  @applications = Application.where(user_id: current_user.id)#.includes([:user])#.includes([:program])
+  @applications = Application.where(user_id: current_user.id)#.includes([:photo_attachment])#.includes([:user])#.includes([:program])
   # @pagy, @programs = pagy(current_user.find_liked_items, items: 20)
   # Need to filter/scope out applied to from the saved!  Not key though, figure it out for later.  
   # @programs = current_user.applications.where(program_id: current_user.find_liked_items)

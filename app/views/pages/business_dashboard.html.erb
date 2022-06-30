@@ -7,7 +7,16 @@
   </div>
   <div class="tab-content" id="v-pills-tabContent">
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-      ...
+      <div class=container">
+        <div class="row">
+          <div class="col">
+            <h3>Welcome back <%= current_user.first_name %></h3>
+            <p>You currently have <%= @programs.size %> programs registered</p>
+            <p>Your programs currently have <%= @testingarray.sum %> applicants</p>
+            <p>Your programs have so far gotten do the math later views</p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
       <div class="container">
@@ -34,7 +43,7 @@
                     <td> <%= program.application_due_date %> </td>
                     <td><%= program.status %></td>
                     <td><%= program.created_at.strftime("%m/%d/%y at %l:%M %p") %></td>
-                    <td><%= link_to "See applications", program_applications_path(program.id), data: { turbo: :true }, method: :get %></td>
+                    <td><%= link_to "See #{program.applications.size} applications", program_applications_path(program.id), data: { turbo: :true }, method: :get %></td>
                     <td><%= link_to "See", program_path(program.id), data: { turbo: :true }, method: :get, class: 'badge bg-primary' %>
                       <%= link_to "Edit", edit_program_path(program.id), data: {turbo: :true }, method: :get, class: "badge bg-success" %>
                       <%= link_to "Delete", program_path(program.id), data: { turbo: :true, confirm: "Are you sure?" }, method: :delete, class: 'badge bg-danger', remote: true %>
@@ -48,12 +57,51 @@
       </div>
     </div>
     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-     
+      <div class=container">
+        <div class="row">
+          <div class="col">
+            <h3>Ugh, figure this shit out later.</h3>
+            <% @programs.each do |program| %>
+              <div class="list-group w-50">
+                <label class="list-group-item">
+                  <input type="radio" class="form-check-input me-1" name="gender"> <%= program.title %>
+                </label>
+              </div>
+            <% end %>
+            <table class="table table-striped table-bordered table-hover caption-top">
+              <caption>The applications to your program</caption>
+              <thead>
+                <tr>
+                  <th>User photo</th>
+                  <th>Program</th>
+                  <th>Applicant Name</th>
+                  <th>Submitted on</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @applications.each do |application| %>
+                  <tr>
+                    <td><%= cl_image_tag application.user.photo.key, height: 150, width: 200, crop: :fill, :alt=>"Applicant user photo" %></td>
+                    <td><%= application.program.title %></td>
+                    <td><%= application.user.first_name %> <%= application.user.last_name %></td>
+                    <td><%= application.created_at.strftime("%m/%d/%y at %l:%M %p") %></td>
+                    <td><%= application.status %></td>
+                    <td><%= link_to "See & Respond", program_application_path(application.program_id, application.id), data: { turbo: :true }, method: :get, class: 'badge bg-primary' %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
       <div class=container">
         <div class="row">
-          <div class="col">
+          <div class="col card">
             <h3>Would you like to edit your user profile?  Click here: </h3>
             <%= link_to "Edit your user profile", edit_user_registration_path %>
             <h4>This is your current information</h4>
