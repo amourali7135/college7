@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :programs
-  has_many :applications
-  has_one_attached :photo
+  has_many :programs, dependent: :destroy
+  has_many :applications, dependent: :destroy
+  has_one_attached :photo, dependent: :destroy
   acts_as_voter
 
 

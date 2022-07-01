@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => 'admin', as: 'rails_admin'
   devise_for :users #, controllers: { registrations: "registrations" }
   root to: 'pages#home'
 
@@ -23,4 +24,5 @@ Rails.application.routes.draw do
   get 'blog', to: 'pages#blog', as: 'blog'
   get 'career', to: 'pages#career', as: 'career_options'
   get 'businesses', to: 'pages#businesses', as: 'businesses'
+
 end

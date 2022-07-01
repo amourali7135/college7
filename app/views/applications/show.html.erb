@@ -19,51 +19,51 @@
         <p>Program cost: <%= @application.program.cost %> </p>
         <p>Program time commitment: <%= @application.program.time_requirement %> </p>
         <p>Tag check: <%= @application.program.occupation_tagging_list.each do |tag| %></p>
-          <%= link_to tag, programs_path(tag: tag) %>
+          <%= link_to tag, "/programs?search%5Blocation%5D=&search%5Bremote%5D=&search%5Blength%5D=&search%5Bprogram_format%5D=&search%5Btime_requirement%5D=&search%5Boccupation_tagging_list%5D=#{tag}&commit=Submit" %>
         <% end %>
       <% else %>
         <h3>Applicant information for your <%= @application.program.title %> program</h3>
         <div class="d-flex justify-content-between w-100">
           <%= simple_form_for [@program, @application], url: program_application_path(@program, @application), method: :patch, remote: true do |f|%>
-          <%#= simple_form_for [@program, @application], url: edit_program_application_path, method: :post do |f|%>
-            <p>What do you think of this application?  Change the application status here:  </p>
-            <%= f.input :status, collection: Application.statuses.keys %>
-            <% if @program.essay_one_needed? %>
-              <div id="application_essay_one">
-                <%= f.input :first_essay, as: :hidden %>
+            <%#= simple_form_for [@program, @application], url: edit_program_application_path, method: :post do |f|%>
+              <p>What do you think of this application?  Change the application status here:  </p>
+              <%= f.input :status, collection: Application.statuses.keys %>
+              <% if @program.essay_one_needed? %>
+                <div id="application_essay_one">
+                  <%= f.input :first_essay, as: :hidden %>
+                </div>
+              <% end %>
+              <% if @program.essay_two_needed? %>
+                <div id="application_essay_two" >
+                  <%= f.input :second_essay, as: :hidden %>
+                </div>
+              <% end %>
+              <% if @program.essay_three_needed? %>
+                <div id="application_essay_three" >
+                  <%= f.input :third_essay, as: :hidden %>
+                </div>
+              <% end %>
+              <div style="text-align:center">
+                <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>
               </div>
             <% end %>
-            <% if @program.essay_two_needed? %>
-              <div id="application_essay_two" >
-                <%= f.input :second_essay, as: :hidden %>
-              </div>
-            <% end %>
-            <% if @program.essay_three_needed? %>
-              <div id="application_essay_three" >
-                <%= f.input :third_essay, as: :hidden %>
-              </div>
-            <% end %>
-            <div style="text-align:center">
-              <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>
-            </div>
-          <% end %>
-        </div>
-        <p><%= cl_image_tag @application.user.photo.key, height: 150, width: 200, crop: :fill, :alt=>"Applicant user photo" %></p>
-        <p><%= @application.user.first_name %> <%= @application.user.last_name %></p>
-        <p><%= @application.user.location %></p>
-        <p><%= @application.user.bio %></p>
-        <p><%= @application.user.age %></p>
-        <p><%= @application.essay_question_one %></p>
-        <p><%= @application.first_essay %></p>
-        <p><%= @application.essay_question_two %></p>
-        <p><%= @application.second_essay %></p>
-        <p><%= @application.essay_question_three %></p>
-        <p><%= @application.third_essay %></p>
-      <% end %>
-      -Private information of applicant.
-      -Questions from proper controller actions.
-      -User dashboard AJAX access like program index show combo.
-      -Show info for business if student, and info for student if business.
+          </div>
+          <p><%= cl_image_tag @application.user.photo.key, height: 150, width: 200, crop: :fill, :alt=>"Applicant user photo" %></p>
+          <p><%= @application.user.first_name %> <%= @application.user.last_name %></p>
+          <p><%= @application.user.location %></p>
+          <p><%= @application.user.bio %></p>
+          <p><%= @application.user.age %></p>
+          <p><%= @application.essay_question_one %></p>
+          <p><%= @application.first_essay %></p>
+          <p><%= @application.essay_question_two %></p>
+          <p><%= @application.second_essay %></p>
+          <p><%= @application.essay_question_three %></p>
+          <p><%= @application.third_essay %></p>
+        <% end %>
+        -Private information of applicant.
+        -Questions from proper controller actions.
+        -User dashboard AJAX access like program index show combo.
+        -Show info for business if student, and info for student if business.
+      </div>
     </div>
   </div>
-</div>

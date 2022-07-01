@@ -15,7 +15,7 @@
         <p>Program cost: <%= @program.cost %> </p>
         <p>Program time commitment: <%= @program.time_requirement %> </p>
         <p>Tag check: <%= @program.occupation_tagging_list.each do |tag| %></p>
-          <%= link_to tag, programs_path(tag: tag) %>
+          <%= link_to tag, "/programs?search%5Blocation%5D=&search%5Bremote%5D=&search%5Blength%5D=&search%5Bprogram_format%5D=&search%5Btime_requirement%5D=&search%5Boccupation_tagging_list%5D=#{tag}&commit=Submit" %>
         <% end %>
         <% if current_user %>
           <div class="container">

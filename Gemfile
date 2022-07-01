@@ -121,6 +121,8 @@ group :development do
   gem 'bullet'
   # Formatter to save time, if it works.
   gem 'htmlbeautifier'
+  # Admin file because why not try it out...?  I can't do anything else today anyways.
+  gem 'rails_admin', '~> 3.0'
 
 
 end
@@ -138,3 +140,4 @@ group :test do
   gem "faker"
   
 end
+gem "sassc-rails"

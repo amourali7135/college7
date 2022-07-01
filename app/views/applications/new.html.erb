@@ -3,7 +3,7 @@
     <div class="col-sm-8 card p-4 m-4 bg-light ">
       <h2>Apply to your dream program and improve your life</h2>
       <%= simple_form_for [@program, @application], url: program_applications_path, method: :post do |f|%>
-        <p>Upon applying, the program manager will receive the following personal information about you before subsequently deciding upon how to respond to your application as soon as they can</p>
+        <p>Upon applying, the program manager will receive all of your personal information alongside your application</p>
         <div id="application_personal_details">
           <p>Name: <%= current_user.first_name %> <%= current_user.last_name %> </p>
           <p>Location: <%= current_user.location %></p>

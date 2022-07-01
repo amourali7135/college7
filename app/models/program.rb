@@ -2,7 +2,7 @@ class Program < ApplicationRecord
     include PgSearch::Model
     belongs_to :user
     #  I had to do inverse of and accepts nested to let applications access program parent attributes for its validations
-    has_many :applications, inverse_of: :program
+    has_many :applications, inverse_of: :program, dependent: :destroy
     accepts_nested_attributes_for :applications
     acts_as_votable
     acts_as_taggable_on :occupation_taggings
