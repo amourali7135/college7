@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_183249) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_04_085216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,6 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_183249) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["latitude", "longitude"], name: "index_programs_on_latitude_and_longitude"
     t.index ["user_id"], name: "index_programs_on_user_id"
   end
 
@@ -147,7 +148,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_183249) do
     t.text "goal"
     t.integer "user_type"
     t.string "interests"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["latitude", "longitude"], name: "index_users_on_latitude_and_longitude"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

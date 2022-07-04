@@ -12,6 +12,9 @@ class User < ApplicationRecord
 
   enum user_type: { employer: 0, student: 1 }#, default: :nil
 
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :location, presence: true

@@ -16,6 +16,7 @@ user =
     location: 'Singapore',
     user_type: 'employer',
     organization_name: 'Fake organization name',
+    admin: true, 
   )
 user.photo.attach(
   io: File.open('app/assets/images/bourdain.jpg'),
@@ -35,6 +36,7 @@ user =
     age: 23,
     bio: Faker::Lorem.sentences(number: 3),
     goal: Faker::Lorem.sentences(number: 1),
+    admin: true, 
   )
 user.photo.attach(
   io: File.open('app/assets/images/bourdain.jpg'),

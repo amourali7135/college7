@@ -10,5 +10,7 @@ class AddFieldsToUsers < ActiveRecord::Migration[7.0]
     add_column :users, :goal, :text
     add_column :users, :user_type, :integer
     add_column :users, :interests, :string
+    add_column :users, :latitude, :float
+    add_column :users, :longitude, :float
   end
 end
