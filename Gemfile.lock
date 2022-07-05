@@ -382,6 +382,8 @@ GEM
     stackprof (0.2.19)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
+    strong_migrations (0.8.0)
+      activerecord (>= 5.2)
     strscan (3.0.3)
     thor (1.2.1)
     tilt (2.0.10)
@@ -463,6 +465,7 @@ DEPENDENCIES
   sprockets-rails
   stackprof
   stimulus-rails
+  strong_migrations
   turbo-rails
   tzinfo-data
   web-console

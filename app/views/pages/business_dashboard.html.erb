@@ -4,12 +4,13 @@
     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Programs</button>
     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Applicants</button>
     <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Edit info</button>
+    <button class="nav-link" id="v-pills-experiment-tab" data-bs-toggle="pill" data-bs-target="#v-pills-experiment" type="button" role="tab" aria-controls="v-pills-experiment" aria-selected="false">New Program</button>
   </div>
   <div class="tab-content" id="v-pills-tabContent">
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-      <div class=container">
-        <div class="row">
-          <div class="col">
+      <div class="container">
+        <div class="row ">
+          <div class="col card ">
             <h3>Welcome back <%= current_user.first_name %></h3>
             <p>You currently have <%= @programs.size %> programs registered</p>
             <p>Your programs currently have <%= @testingarray.sum %> applicants</p>
@@ -109,6 +110,16 @@
             <p>Organization: <%= current_user.organization_name %> </p>
             <p>Email: <%= current_user.email %> </p>
             <p>Location: <%= current_user.location %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="v-pills-experiment" role="tabpanel" aria-labelledby="v-pills-experiment-tab">
+      <div class=container">
+        <div class="row">
+          <div class="col card">
+            <h3>Would you like to add a new program?  Click here: </h3>
+            <%= link_to "Add a new program", new_program_path %>
           </div>
         </div>
       </div>

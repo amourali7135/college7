@@ -76,8 +76,10 @@ gem 'pg_search'
 gem "geocoder"
 # Pagination experiment.
 gem 'pagy'
-# Cannot get Bootstrap working, so try this way.
+# Cannot get Bootstrap working, so try this way...nvm.
 # gem 'bootstrap', '~> 5.1.3'
+# Prevent unsafe migrations, experiment with it moving forward.
+gem "strong_migrations"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

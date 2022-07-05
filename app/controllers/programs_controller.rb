@@ -30,9 +30,10 @@ class ProgramsController < ApplicationController
 
   def create
     @program = Program.new(program_params)
+    @program.user_id = current_user.id
     if @program.save
       flash[:notice] = 'Your program was successfully created!'
-      redirect_to @program
+      redirect_to business_dashboard_path
     else
       flash[:error] = 'There was an error, please try again!'
       render 'new'
