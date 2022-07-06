@@ -5,13 +5,15 @@
       <p>Please provide the following details about your program</p>
       <%= simple_form_for @program do |f|%>
         <%#= f.input :career_category, label: "Please pick the career category that best applies to this program", collection: Program.career_category %>
-        <%= f.input :status, label: "Would you like to update the status of your program?", collection: Program.statuses.keys %>
         <%= f.input :occupation_tagging_list, collection: Program.career_category, label: "Please pick the career category that best applies to this program" %>
         <%= f.input :program_format, label: "Please pick the format that best applies to this program", collection: Program.program_format %>
         <%= f.input :title, label:  "What would you like to name your program?", placeholder: "4-week long carpeting crash course" %>
         <%= f.input :headline, label: "Provide a one sentence summary about your program to garner interest", placeholder: "Learn carpeting basics 101" %>
         <%= f.input :description, label: "Provide an in-depth description about what your program has to offer potential students", placeholder: "We're offering a four-week long crash course for students to learn about the basics of carpeting.  It's a full-time class of four located in the heart of New York City.  No experience is necessary, must be at least 18, etc." %>
-        <%= f.input :requirements, label: "What are the requirements that applicants need to have in order to apply successfully?", placeholder: 'There are no pre-requisites other than having enthusiasm to learn!' %>
+        <%= f.input :prequisites, label: "Are there any requirements that applicants need to have in order to apply successfully?", placeholder: 'There are no pre-requisites other than having enthusiasm to learn!' %>
+        <div id="prequisites_prompt" style="display:none">
+          <%= f.input :requirements, label: "What are these requirements?", placeholder: 'There are no pre-requisites other than having enthusiasm to learn!' %>
+        </div>
         <div id="geocoder" >
           <%= f.input :location, label: "Where is this program located?", placeholder: "1 Rodeo Drive Beverly Hills California", input_html: { data: { geocoder_target: "location" }, class: "d-none" }, wrapper_html: { id: :location_label } %>
         </div>
@@ -19,6 +21,9 @@
         <%= f.input :rolling, label: "Are potential students allowed to apply at anytime?  Or is there a specific due date?" %>
         <div id="rolling_prompt" style="display:none">
           <%= f.input :application_due_date, label: "On what day are applications due by at the latest?", required: true %>
+        </div>
+        <%= f.input :first_day, label: "Is there a definite first starting day for your program?" %>
+        <div id="starting_date_prompt" style="display:none">
           <%= f.input :start_date, label: "On what date does this program begin?", required: true %>
         </div>
         <%= f.input :time_requirement, label: "What's the weekly time commitment for the program?", collection: Program.time_requirement %>
@@ -51,6 +56,7 @@
         <%= f.input :housing_provided, label: "Would program participants have housing provided for them from you?" %>
         <%= f.input :relocation_assistance, label: "Will you provide participants with any help to relocate to the destination of your program?" %>
         <%= f.input :certificate_awarded, label: "Do participants earn any certification or degree upon completion?" %>
+        <%= f.input :status, value: :active, as: :hidden %>
         <%= f.input :job_guaranteed, label: "Are participants guaranteed to get a job with your organization upon successfully completing the program?" %>
         <div style="text-align:center">
           <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>

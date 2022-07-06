@@ -14,7 +14,7 @@ class Program < ApplicationRecord
     validates :start_date, presence: true, if: :rolling?
     validates :location, presence: true
     validates :spots, presence: true
-    validates :requirements, presence: true, length: { minimum: 10 }
+    validates :requirements, presence: true, length: { minimum: 10 }, if: :prerequisites?
     validates :length, presence: true
     validates :minimum_age, presence: true, numericality: { only_integer: true,  greater_than: 12 }
     validates :visa_sponsorship, inclusion: [true, false], exclusion: [nil]
@@ -41,6 +41,8 @@ class Program < ApplicationRecord
     validate :future_date_application?
     validate :future_date_start?, if: :rolling?
     validates :occupation_tagging_list, presence: true
+    validates :start_date, presence: true, if: :first_day?
+    # validates :
   
     enum status: { active: 0, temporarily_paused: 1, permanently_closed: 2 }, _default: "active"
   
@@ -106,6 +108,14 @@ class Program < ApplicationRecord
       if start_date < Date.today
         errors.add(:start_date, "The start date must be in the future!")
       end
+    end
+
+    def prerequisites?
+      return true if prerequisites == true
+    end
+
+    def first_day?
+      return true if first_day == true
     end
   
     # scopes?

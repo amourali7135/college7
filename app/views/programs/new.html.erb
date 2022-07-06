@@ -10,7 +10,10 @@
         <%= f.input :title, label:  "What would you like to name your program?", placeholder: "4-week long carpeting crash course" %>
         <%= f.input :headline, label: "Provide a one sentence summary about your program to garner interest", placeholder: "Learn carpeting basics 101" %>
         <%= f.input :description, label: "Provide an in-depth description about what your program has to offer potential students", placeholder: "We're offering a four-week long crash course for students to learn about the basics of carpeting.  It's a full-time class of four located in the heart of New York City.  No experience is necessary, must be at least 18, etc." %>
-        <%= f.input :requirements, label: "What are the requirements that applicants need to have in order to apply successfully?", placeholder: 'There are no pre-requisites other than having enthusiasm to learn!' %>
+        <%= f.input :prerequisites, label: "Are there any requirements that applicants need to have in order to apply successfully?", placeholder: 'There are no pre-requisites other than having enthusiasm to learn!' %>
+        <div id="prequisites_prompt" style="display:none">
+          <%= f.input :requirements, label: "What are these requirements?", placeholder: 'There are no pre-requisites other than having enthusiasm to learn!', required: true %>
+        </div>
         <div id="geocoder" >
           <%= f.input :location, label: "Where is this program located?", placeholder: "1 Rodeo Drive Beverly Hills California", input_html: { data: { geocoder_target: "location" }, class: "d-none" }, wrapper_html: { id: :location_label } %>
         </div>
@@ -18,6 +21,9 @@
         <%= f.input :rolling, label: "Are potential students allowed to apply at anytime?  Or is there a specific due date?" %>
         <div id="rolling_prompt" style="display:none">
           <%= f.input :application_due_date, label: "On what day are applications due by at the latest?", required: true %>
+        </div>
+        <%= f.input :first_day, label: "Is there a definite first starting day for your program?" %>
+        <div id="first_day_prompt" style="display:none">
           <%= f.input :start_date, label: "On what date does this program begin?", required: true %>
         </div>
         <%= f.input :time_requirement, label: "What's the weekly time commitment for the program?", collection: Program.time_requirement %>
@@ -42,7 +48,7 @@
         </div>
         <%= f.input :cost, label: "How much will it cost successful applicants to participate in and complete the program?", placeholder: "$2500" %>
         <%= f.input :nationals_only, label: "Are national citizens only eligible to apply?" %>
-        <div id="visa_prompt" style="display:block">
+        <div id="visa_prompt" style="display:none">
           <%= f.input :visa_sponsorship, label: "Do you offer visa sponsorship for foreign nationals?" %>
         </div>
         <%= f.input :remote, label: "Is the program completely remote?" %>

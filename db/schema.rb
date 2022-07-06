@@ -62,36 +62,38 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_085216) do
     t.string "title"
     t.string "headline"
     t.text "description"
-    t.boolean "rolling", null: false
+    t.boolean "rolling", default: false, null: false
     t.date "application_due_date"
     t.string "location"
     t.float "latitude"
     t.float "longitude"
-    t.boolean "remote", null: false
+    t.boolean "remote", default: false, null: false
     t.integer "spots"
+    t.boolean "prerequisites", default: false, null: false
     t.text "requirements"
     t.string "length"
     t.integer "minimum_age"
-    t.boolean "visa_sponsorship", null: false
+    t.boolean "visa_sponsorship", default: false, null: false
+    t.boolean "first_day", default: false, null: false
     t.date "start_date"
-    t.boolean "virtual_components", null: false
-    t.boolean "housing_provided", null: false
+    t.boolean "virtual_components", default: false, null: false
+    t.boolean "housing_provided", default: false, null: false
     t.boolean "essay_one_needed", default: false, null: false
     t.boolean "essay_two_needed", default: false, null: false
     t.boolean "essay_three_needed", default: false, null: false
     t.string "essay_question_one"
     t.string "essay_question_two"
     t.string "essay_question_three"
-    t.boolean "salary", null: false
+    t.boolean "salary", default: false, null: false
     t.integer "salary_paid"
     t.integer "cost"
-    t.boolean "certificate_awarded", null: false
-    t.boolean "nationals_only", null: false
+    t.boolean "certificate_awarded", default: false, null: false
+    t.boolean "nationals_only", default: false, null: false
     t.integer "status"
     t.string "time_requirement"
-    t.boolean "job_guaranteed", null: false
+    t.boolean "job_guaranteed", default: false, null: false
     t.string "program_format"
-    t.boolean "relocation_assistance", null: false
+    t.boolean "relocation_assistance", default: false, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
