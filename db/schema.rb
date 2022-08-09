@@ -94,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_085216) do
     t.boolean "job_guaranteed", default: false, null: false
     t.string "program_format"
     t.boolean "relocation_assistance", default: false, null: false
+    t.integer "applications_count", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

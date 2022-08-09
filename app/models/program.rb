@@ -77,6 +77,14 @@ class Program < ApplicationRecord
     def active
       @programs = Program.where(status: "active")
     end
+
+    def temporarily_paused
+      @programs = Program.where(status: "temporarily_paused")
+    end
+
+    def closed 
+      @programs = Program.where(status: "permanently_closed")
+    end
   
     def salary?
       return true if salary == true
@@ -118,7 +126,7 @@ class Program < ApplicationRecord
       return true if first_day == true
     end
   
-    # scopes?
+    # scopes?  Not needed really...
   
     # def auto_finish
     #   if application_due_date > Date.today

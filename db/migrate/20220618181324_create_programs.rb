@@ -37,6 +37,7 @@ class CreatePrograms < ActiveRecord::Migration[7.0]
       # t.string :career_category
       t.string :program_format
       t.boolean :relocation_assistance, null: false, default: false
+      t.integer :applications_count, default: 0, null: false
       t.references :user, null: false, foreign_key: true
       t.timestamps
     end

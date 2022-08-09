@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3"
+gem "rails", "~> 7.0.3.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -74,7 +74,7 @@ gem 'acts-as-taggable-on', '~> 9.0'
 gem 'pg_search'
 # For geocoding + better search results for users
 gem "geocoder"
-# Pagination experiment.
+# Pagination experiment.  Problematic at dashboard though.  
 gem 'pagy'
 # Cannot get Bootstrap working, so try this way...nvm.
 # gem 'bootstrap', '~> 5.1.3'
@@ -122,7 +122,7 @@ group :development do
   # Find N +1 queries more efficiently
   gem 'bullet'
   # Formatter to save time, if it works.
-  gem 'htmlbeautifier'
+  # gem 'htmlbeautifier'
   # Admin file because why not try it out...?  I can't do anything else today anyways.
   gem 'rails_admin', '~> 3.0'
 

@@ -1,5 +1,5 @@
 class Application < ApplicationRecord
-  belongs_to :program#Set this up later, counter_cache: true
+  belongs_to :program, counter_cache: :applications_count
   belongs_to :user
 
   enum status: { pending: 0, interested: 1, rejected: 2, accepted: 3 }, _default: "pending"
