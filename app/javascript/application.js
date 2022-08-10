@@ -8,6 +8,7 @@ import "bootstrap";
 // Using MRUJS for easier migration to Rails 7 so that old AJAX methods work while I refactor them via Turbo.  
 import mrujs from "mrujs";
 import { JsErb } from "mrujs/plugins"
+
 // Turbo must be set before starting mrujs for proper compatibility with querySelectors.
 window.Turbo = Turbo;
 mrujs.start({
