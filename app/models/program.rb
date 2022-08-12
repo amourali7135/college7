@@ -6,6 +6,7 @@ class Program < ApplicationRecord
     accepts_nested_attributes_for :applications
     acts_as_votable
     acts_as_taggable_on :occupation_taggings
+    after_commit :async_update
   
     validates :title, presence: true, length: { minimum: 10 }
     validates :headline, presence: true, length: { minimum: 10 }
@@ -134,4 +135,10 @@ class Program < ApplicationRecord
     #     ...set this up as a que job for later.
     #   end
     # end
+
+    private
+
+    def async_update
+      DueDateJob.perform_later(self)
+    end
 end

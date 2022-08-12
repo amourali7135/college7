@@ -80,6 +80,9 @@ gem 'pagy'
 # gem 'bootstrap', '~> 5.1.3'
 # Prevent unsafe migrations, experiment with it moving forward.
 gem "strong_migrations"
+# For background + asynchronous jobs
+gem "sidekiq"
+gem "sidekiq-failures", "~> 1.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -25,4 +25,9 @@ Rails.application.routes.draw do
   get 'career', to: 'pages#career', as: 'career_options'
   get 'businesses', to: 'pages#businesses', as: 'businesses'
 
+  require "sidekiq/web"
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
 end
