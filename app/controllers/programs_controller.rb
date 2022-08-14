@@ -32,7 +32,8 @@ class ProgramsController < ApplicationController
     @program = Program.new(program_params)
     @program.user_id = current_user.id
     if @program.save
-      DueDateJob.set(wait_until: @program.application_due_date + 1).perform_later(@program)
+      DueDateStatusJob.set(wait_until: @program.application_due_date + 1).perform_later(@program)
+      #test immediately
       flash[:notice] = 'Your program was successfully created!'
       redirect_to business_dashboard_path
     else

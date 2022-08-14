@@ -4,9 +4,10 @@ class Program < ApplicationRecord
     #  I had to do inverse of and accepts nested to let applications access program parent attributes for its validations
     has_many :applications, inverse_of: :program, dependent: :destroy
     accepts_nested_attributes_for :applications
+    # after_commit :async_update
+
     acts_as_votable
     acts_as_taggable_on :occupation_taggings
-    after_commit :async_update
   
     validates :title, presence: true, length: { minimum: 10 }
     validates :headline, presence: true, length: { minimum: 10 }
@@ -138,7 +139,7 @@ class Program < ApplicationRecord
 
     private
 
-    def async_update
-      DueDateJob.perform_later(self)
-    end
+    # def async_update
+    #   DueDateJob.perform_later(self)
+    # end
 end
